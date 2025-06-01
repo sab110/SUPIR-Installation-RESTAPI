@@ -1,0 +1,23 @@
+--ip: IP address for the server to listen on.
+--share: Set to True to share the app publicly.
+--port: Port number for the server to listen on.
+--log_history: Enable logging of request history.
+--loading_half_params: Enable loading model parameters in half precision to reduce memory usage.
+--fp8: Enable loading model parameters in FP8 precision to reduce memory usage.
+--autotune: Automatically set precision parameters based on the amount of VRAM available.
+--fast_load_sd: Enable fast loading of model state dict and prevents unnecessary memory allocation. But may uses more VRAM.
+--use_tile_vae: Enable tiling for the VAE to handle larger images with limited memory.
+--outputs_folder_button: Outputs Folder Button Will Be Enabled.
+--use_fast_tile: Use a faster tile encoding/decoding, may impact quality.
+--encoder_tile_size: Tile size for the encoder. Larger sizes may improve quality but require more memory.
+--decoder_tile_size: Tile size for the decoder. Larger sizes may improve quality but require more memory.
+--load_8bit_llava: Load the LLAMA model in 8-bit precision to save memory.
+--load_4bit_llava: Load the LLAMA model in 4-bit precision to significantly reduce memory usage.
+--ckpt: Path to the checkpoint file for the model.
+--ckpt_browser: Enable a checkpoint selection dropdown.
+--ckpt_dir: Directory where model checkpoints (e.g. SDXL 1.0 base) are stored.
+--theme: Theme for the UI. Use 'default' or specify a custom theme.
+--open_browser: Automatically open the web browser when the server starts.
+--outputs_folder: Folder where output files will be saved.
+--debug: Enable debug mode, disables open_browser, and adds ui buttons for testing elements.
+--dont_move_cpu: Disables moving models to the CPU after completed. If you have sufficient VRAM enable this.
