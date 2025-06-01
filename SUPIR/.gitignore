@@ -34,7 +34,7 @@ presets
 models/*
 
 # But keep the folder itself
-!models/.gitkeep
+!models/put_models_here.txt
 
 # But explicitly allow SUPIR/models to be tracked
 !SUPIR/models/
