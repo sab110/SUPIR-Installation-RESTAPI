@@ -30,7 +30,11 @@ outputs
 history
 presets
 # Ignore the top-level models folder
-/models/
+# Ignore everything in models/
+models/*
+
+# But keep the folder itself
+!models/.gitkeep
 
 # But explicitly allow SUPIR/models to be tracked
 !SUPIR/models/
