@@ -40,7 +40,7 @@
 set -e
 
 # ----------------------------------------
-# 1. Install system-level prerequisites (if not already installed)
+# 1. Ensure requests is available
 # ----------------------------------------
 pip install requests
 
@@ -69,7 +69,7 @@ pip install openai-clip==1.0.1
 pip install filterpy==1.4.5
 
 # ----------------------------------------
-# 6. Install the requirements.txt
+# 6. Install requirements.txt
 # ----------------------------------------
 pip install -r requirements.txt
 
@@ -98,29 +98,23 @@ export HF_HUB_ENABLE_HF_TRANSFER=1
 
 # ----------------------------------------
 # 10. Download any HF models via HF_model_downloader.py
+#     (COMMENTED OUT for build time—will run at container startup)
 # ----------------------------------------
-if [ -f "HF_model_downloader.py" ]; then
-    python HF_model_downloader.py
-else
-    echo "Warning: HF_model_downloader.py not found; skipping."
-fi
+# if [ -f "HF_model_downloader.py" ]; then
+#     python HF_model_downloader.py
+# else
+#     echo "Warning: HF_model_downloader.py not found; skipping."
+# fi
 
 # ----------------------------------------
 # 11. Set up workspace paths and copy models
 # ----------------------------------------
-# These correspond to:
-#   WORKSPACE_PATH = Path("/workspace")
-#   INPUT_FOLDER   = WORKSPACE_PATH / "adjusted"
-#   OUTPUT_FOLDER  = WORKSPACE_PATH / "adjustedupscaled"
-#   MODELS_PATH    = WORKSPACE_PATH / "models"
-#   TEMP_UPLOAD_PATH = WORKSPACE_PATH / "temp"
-
 mkdir -p /workspace/adjusted
 mkdir -p /workspace/adjustedupscaled
 mkdir -p /workspace/models
 mkdir -p /workspace/temp
 
-# Copy any downloaded model files from SUPIR/models into /workspace/models
+# Copy any (small) model files already present in SUPIR/models → /workspace/models
 if [ -d "models" ]; then
     echo "Copying models from SUPIR/models to /workspace/models..."
     cp -r models/* /workspace/models/
@@ -130,4 +124,3 @@ fi
 
 echo "Virtual environment made and installed properly"
 
-read -p "Press [Enter] key to continue..."
