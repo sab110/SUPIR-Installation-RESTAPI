@@ -65,9 +65,15 @@ EXPOSE 8000
 
 # --------------------------------------------------------------------------------
 # 9. Copy entrypoint.sh into the image and make it executable
-# --------------------------------------------------------------------------------
+
+# Install dos2unix just once
+RUN apt-get update && apt-get install -y dos2unix
+
+# Convert line endings and make executable
 COPY entrypoint.sh /workspace/entrypoint.sh
-RUN chmod +x /workspace/entrypoint.sh
+RUN dos2unix /workspace/entrypoint.sh && chmod +x /workspace/entrypoint.sh
+
+
 
 # --------------------------------------------------------------------------------
 # 10. At runtime, entrypoint.sh will:
